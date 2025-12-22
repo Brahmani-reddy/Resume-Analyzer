@@ -1,0 +1,42 @@
+# Resume-Analyzer
+Want to know where your resume really is...? I got you.
+
+
+import streamlit as st from PyPDF2
+import JOB_SKILLS
+import PdfReader from skills
+
+
+# text from resume:
+def getResumeText(file):
+   reader = PdfReader(file)
+   final_text = " "
+   for i in range(len(reader.pages)):
+       page = reader.pages[i]
+       pageText = page.extractText()
+       if pageText:
+          finalText += pageText + ""
+return finalText.lower()
+
+
+# checking skills:
+def checkSkills(resumText, requiredSkills):
+  found = []
+  notFound = []
+
+  for skill in requiredSkills:
+    if skill.lower() in resumeText:
+      found.append(skill)
+    else:
+    notFound.append(skill)
+
+
+# score calculation:
+total = len(requiredSkills)
+matched = len(found)
+if total == 0:
+  return 0, found, notFound
+
+p = matched/total;
+percet = p*100
+return round(percent, 2), found, notFound

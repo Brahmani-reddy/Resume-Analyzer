@@ -1,0 +1,19 @@
+# our resume's UI:
+# some of the variables are directly takes from code(core), check it out.
+
+
+st.title("Basic Resume Analyzer")
+st.write("Upload your resume & select job role")
+jobSelected = st.selectbox("Choose Job Role", list(JOB_SKILLS.key()))
+
+resumeFile = st.fileUploader("Upload Resume(in .pdf), type = ["pdf"]
+
+if resumeFile is not None:
+    resumeContent = getResumeText(resumeFile)
+    roleSkills = JOB_SKILLS[jobSelected]
+
+    score, presentSkills, missingSkills = checkSkills(resumeContent, roleSkills)
+    st.subheader(" <<<<<<< RESULT >>>>>>> ")
+    st.write("Your's resume got:", score, "%")
+
+

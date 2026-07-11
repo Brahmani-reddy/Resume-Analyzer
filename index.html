@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ResuMate | Resume Analyzer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="workspace">
+        <header class="topbar">
+          <div class="brand-block">
+            <div class="brand-mark" aria-hidden="true">R</div>
+            <div>
+              <p class="eyebrow">AI-powered resume analyzer</p>
+              <h1>ResuMate</h1>
+              <p class="tagline">Match your resume to any role with clear NLP scoring and practical improvement steps.</p>
+            </div>
+          </div>
+          <div class="score-card">
+            <span class="score-label">Overall</span>
+            <strong id="overallScore">0%</strong>
+          </div>
+        </header>
+
+        <section class="inputs" aria-label="Resume and job inputs">
+          <article class="panel">
+            <div class="panel-heading">
+              <h2>Resume</h2>
+              <label class="file-button">
+                <input id="resumeFile" type="file" accept=".txt,.md,.csv,.pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+                Upload resume
+              </label>
+            </div>
+            <p id="fileStatus" class="file-status">Supports TXT, MD, CSV, PDF, DOCX, and legacy DOC upload checks.</p>
+            <textarea id="resumeText" spellcheck="true" placeholder="Paste the resume text here..."></textarea>
+          </article>
+
+          <article class="panel">
+            <div class="panel-heading">
+              <h2>Job description</h2>
+              <button id="loadSample" type="button">Sample</button>
+            </div>
+            <textarea id="jobText" spellcheck="true" placeholder="Paste the target job description here..."></textarea>
+          </article>
+        </section>
+
+        <section class="actions" aria-label="Analyzer controls">
+          <div class="controls">
+            <label>
+              Target role
+              <select id="roleSelect">
+                <option value="software">Software engineering</option>
+                <option value="data">Data / ML</option>
+                <option value="product">Product management</option>
+                <option value="design">UX / design</option>
+                <option value="marketing">Marketing</option>
+              </select>
+            </label>
+            <label>
+              Strictness
+              <input id="strictness" type="range" min="0" max="100" value="64" />
+            </label>
+          </div>
+          <button id="analyzeButton" class="primary" type="button">Analyze</button>
+        </section>
+
+        <section class="results" aria-live="polite">
+          <article class="metric">
+            <span>Semantic fit</span>
+            <strong id="semanticScore">0%</strong>
+            <div class="bar"><i id="semanticBar"></i></div>
+          </article>
+          <article class="metric">
+            <span>Skill coverage</span>
+            <strong id="skillScore">0%</strong>
+            <div class="bar"><i id="skillBar"></i></div>
+          </article>
+          <article class="metric">
+            <span>ATS readiness</span>
+            <strong id="atsScore">0%</strong>
+            <div class="bar"><i id="atsBar"></i></div>
+          </article>
+          <article class="metric">
+            <span>Evidence quality</span>
+            <strong id="evidenceScore">0%</strong>
+            <div class="bar"><i id="evidenceBar"></i></div>
+          </article>
+        </section>
+
+        <section class="insights">
+          <article class="panel compact">
+            <h2>Matched skills</h2>
+            <div id="matchedSkills" class="chips empty">Run analysis</div>
+          </article>
+          <article class="panel compact">
+            <h2>Missing priorities</h2>
+            <div id="missingSkills" class="chips empty">Run analysis</div>
+          </article>
+          <article class="panel compact">
+            <h2>Keyword opportunities</h2>
+            <div id="keywordList" class="chips empty">Run analysis</div>
+          </article>
+        </section>
+
+        <section class="panel recommendations">
+          <div class="panel-heading">
+            <h2>Recommendations</h2>
+            <span id="confidenceBadge" class="badge">Needs input</span>
+          </div>
+          <ol id="recommendations">
+            <li>Paste a resume and job description, then analyze.</li>
+          </ol>
+        </section>
+      </section>
+
+      <aside class="explainer">
+        <div class="owner-card">
+          <span class="owner-kicker">Contact</span>
+          <strong>Brahmani Sunkara</strong>
+          <a href="mailto:brahmanisunkara@gmail.com">brahmanisunkara@gmail.com</a>
+          <a href="tel:+917569576029">+91 7569576029</a>
+        </div>
+        <div class="experience-card" aria-label="ResuMate benefits">
+          <span>Upload</span>
+          <span>Match</span>
+          <span>Improve</span>
+        </div>
+      </aside>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/mammoth@latest/mammoth.browser.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
